@@ -16,7 +16,7 @@ namespace UserRolesManagement.Controllers
 {
     public class UserRolesController : ApiController
     {
-        public UserRoleServices  UserRoleServices { get; set; }
+        public UserRoleServices UserRoleServices { get; set; }
 
         public UserRoles userRoles;
         public UserRolesController()
@@ -49,21 +49,21 @@ namespace UserRolesManagement.Controllers
         [ResponseType(typeof(void))]
         [HttpPut]
         [Route("UpdateUserRole")]
-        public IHttpActionResult UpdateUserRole(int id, UserRoleDataTable userRole)
+        public IHttpActionResult UpdateUserRole(int id, UserRoles userRole)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id !=userRoles.Id )
-            {
-                return BadRequest();
-            }
+            var updatedUserRole = UserRoleServices.UpdateUserById(id, userRole);
 
             try
             {
-                UserRoleServices.UpdateUserById(id, userRole);
+                if (updatedUserRole == null)
+                {
+                    return NotFound();
+                }
+
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,7 +77,7 @@ namespace UserRolesManagement.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(updatedUserRole);
         }
 
         [ResponseType(typeof(UserRole))]
@@ -99,30 +99,25 @@ namespace UserRolesManagement.Controllers
         [Route("DeleteUserRole")]
         public IHttpActionResult DeleteUserRole(int id)
         {
-            
-            if (userRole == null)
-            {
+            bool res = UserRoleServices.DeleteUserRole(id);
+            if (res != true)
                 return NotFound();
-            }
-
-            db.UserRoles.Remove(userRole);
-            db.SaveChanges();
-
-            return Ok(userRole);
+            else
+                return Ok(userRoles);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                UserRoleServices.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool UserRoleExists(int id)
         {
-            return db.UserRoles.Count(e => e.Id == id) > 0;
+            return UserRoleServices.UserRoleExists(id);
         }
     }
 }
