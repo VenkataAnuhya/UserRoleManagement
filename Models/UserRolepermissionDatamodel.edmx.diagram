@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a3f4a0ddea24991af08610fbb6e89e4" Name="Diagram1">
+        <EntityTypeShape EntityType="UserRoleManagementModel.Permission" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserRoleManagementModel.PermissionRole" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserRoleManagementModel.Role" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserRoleManagementModel.User" Width="1.5" PointX="0.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserRoleManagementModel.UserRole" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="UserRoleManagementModel.FK__Permissio__Permi__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="UserRoleManagementModel.FK__Permissio__RoleI__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="UserRoleManagementModel.FK__UserRoles__RoleI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="UserRoleManagementModel.FK__UserRoles__UserI__47DBAE45" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
